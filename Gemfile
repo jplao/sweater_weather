@@ -48,6 +48,8 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'simplecov'
   gem 'capybara'
+  gem 'webmock'
+  gem 'vcr'
 end
 
 group :development do
