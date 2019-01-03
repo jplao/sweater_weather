@@ -12,6 +12,8 @@ describe 'as a user' do
     expect(forecast).to have_key(:time)
     expect(forecast).to have_key(:today)
     expect(forecast).to have_key(:hourly)
+    expect(forecast[:hourly].count).to eq(8)
     expect(forecast).to have_key(:five_day)
+    expect(forecast[:five_day].count).to eq(5)
   end
 end
