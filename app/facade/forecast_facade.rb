@@ -11,10 +11,10 @@ class ForecastFacade
 
   private
   def geocode
-    GeocodeService.new(@location).get_coords
+    @geo ||= GeocodeService.new(@location).get_coords
   end
 
   def dark_sky
-    DarkSkyService.new(geocode).get_forecast
+    @darksky ||= DarkSkyService.new(geocode).get_forecast
   end
 end
