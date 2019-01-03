@@ -21,4 +21,16 @@ describe 'dark sky service' do
       expect(response[:daily]).to be_an_instance_of(Hash)
     end
   end
+
+  context 'it works with Google Geocode Service' do
+    it 'returns forecast data' do
+      location = "denver, co"
+      geocode_coords = GeocodeService.new(location).get_coords
+
+      dark_sky_forcast = DarkSkyService.new(geocode_coords).get_forcast
+
+      expect(dark_sky_forcast[:latitude]).to eq(@coords[:lat])
+      expect(dark_sky_forcast[:longitude]).to eq(@coords[:lng])
+    end
+  end
 end
