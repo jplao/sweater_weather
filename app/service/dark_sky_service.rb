@@ -4,7 +4,7 @@ class DarkSkyService
     @longitude = coords[:lng]
   end
 
-  def get_forcast
+  def get_forecast
     to_json("#{ENV['DARK_SKY_API_KEY']}/#{latitude},#{longitude}")
   end
 

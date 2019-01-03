@@ -11,8 +11,8 @@ describe 'dark sky service' do
   end
 
   context 'it returns forecast data' do
-    it '.get_forcast' do
-      response = @service.get_forcast
+    it '.get_forecast' do
+      response = @service.get_forecast
       expect(response[:latitude]).to eq(@coords[:lat])
       expect(response[:longitude]).to eq(@coords[:lng])
       expect(response[:timezone]).to eq("America/Denver")
@@ -27,10 +27,10 @@ describe 'dark sky service' do
       location = "denver, co"
       geocode_coords = GeocodeService.new(location).get_coords
 
-      dark_sky_forcast = DarkSkyService.new(geocode_coords).get_forcast
+      dark_sky_forecast = DarkSkyService.new(geocode_coords).get_forecast
 
-      expect(dark_sky_forcast[:latitude]).to eq(@coords[:lat])
-      expect(dark_sky_forcast[:longitude]).to eq(@coords[:lng])
+      expect(dark_sky_forecast[:latitude]).to eq(@coords[:lat])
+      expect(dark_sky_forecast[:longitude]).to eq(@coords[:lng])
     end
   end
 end
