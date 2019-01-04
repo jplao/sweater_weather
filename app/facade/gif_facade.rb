@@ -10,11 +10,18 @@ class GifFacade
   end
 
   def create_gifs
-    a = ForecastFacade.new(@location).create_forecast
-    daily = a.data[:daily][:data]
-    daily.each do |day_data|
+    daily_forecast.each do |day_data|
       @daily_forecasts << DayGif.new(day_data[:summary], day_data[:time])
     end
+  end
+
+  private
+  def get_forecast_info
+    @forecast ||= ForecastFacade.new(@location).create_forecast
+  end
+
+  def daily_forecast
+    get_forecast_info.data[:daily][:data]
   end
 
 end
