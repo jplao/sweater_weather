@@ -4,9 +4,7 @@ class ForecastFacade
   end
 
   def create_forecast
-    forecast = Forecast.new(dark_sky, @location)
-    forecast.load_data
-    forecast
+    Forecast.new(dark_sky, @location)
   end
 
   private
