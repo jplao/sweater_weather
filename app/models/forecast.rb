@@ -4,7 +4,8 @@ class Forecast
               :time,
               :today,
               :hourly,
-              :five_day
+              :five_day,
+              :data
 
   def initialize(data, location)
     @data = data
@@ -19,7 +20,6 @@ class Forecast
 
 
   private
-    attr_reader :data
 
   def load_data
     load_today
