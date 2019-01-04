@@ -12,6 +12,7 @@ describe 'as a user' do
     expect(gifs[:daily_forecasts].count).to eq(8)
     expect(gifs[:daily_forecasts][0]).to have_key(:time)
     expect(gifs[:daily_forecasts][0]).to have_key(:summary)
-    expect(gifs[:daily_forecasts][0]).to have_key(:source)
+    expect(gifs[:daily_forecasts][0]).to have_key(:url)
+    expect(gifs).to have_key(:copywrite)
   end
 end
