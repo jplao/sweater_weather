@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  attr_reader :api_key
+  has_secure_password
 
   before_create :create_activation_digest
   validates :email, uniqueness: true, presence: true
