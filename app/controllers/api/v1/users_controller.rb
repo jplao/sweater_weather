@@ -3,7 +3,6 @@ class Api::V1::UsersController < ApplicationController
     if params[:password] == params[:password_confirmation]
       @user = User.create(user_params)
       render json: UserSerializer.new(@user)
-      binding.pry
     end
   end
 
