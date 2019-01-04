@@ -14,23 +14,25 @@ class Forecast
     @today = []
     @hourly = []
     @five_day = []
+    load_data
   end
+
+
+  private
+    attr_reader :data
 
   def load_data
     load_today
     load_hourly
     load_five_day
   end
-  
-  private
-    attr_reader :data
 
   def load_today
     @today = CurrentForecast.new(data)
   end
 
   def load_hourly
-    data[:hourly][:data].first(8).each do |hour_data|
+    data[:hourly][:data][1..8].each do |hour_data|
       @hourly << HourlyForecast.new(hour_data)
     end
   end
