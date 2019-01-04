@@ -1,11 +1,13 @@
 class GifFacade
   attr_reader :id,
-              :daily_forecasts
+              :daily_forecasts,
+              :copywrite
 
   def initialize(data)
     @id = 1
     @location = data
     @daily_forecasts = []
+    @copywrite = Time.now.strftime("%Y")
     create_gifs
   end
 

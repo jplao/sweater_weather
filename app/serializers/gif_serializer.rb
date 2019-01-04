@@ -1,4 +1,4 @@
 class GifSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :daily_forecasts
+  attributes :daily_forecasts, :copywrite
 end
