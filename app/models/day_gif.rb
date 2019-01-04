@@ -1,6 +1,7 @@
 class DayGif
-  def initialize(data)
-    @summary = data
+  def initialize(summary, time)
+    @summary = summary
+    @time = time
     @url = []
     @source = []
     load_gif_data
