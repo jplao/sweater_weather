@@ -9,13 +9,13 @@ class GifFacade
     create_gifs
   end
 
+  private
   def create_gifs
     daily_forecast.each do |day_data|
       @daily_forecasts << DayGif.new(day_data[:summary], day_data[:time])
     end
   end
 
-  private
   def get_forecast_info
     @forecast ||= ForecastFacade.new(@location).create_forecast
   end
