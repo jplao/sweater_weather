@@ -51,6 +51,7 @@ group :development, :test do
   gem 'webmock'
   gem 'vcr'
   gem 'fast_jsonapi'
+  gem 'bcrypt'
 end
 
 group :development do
