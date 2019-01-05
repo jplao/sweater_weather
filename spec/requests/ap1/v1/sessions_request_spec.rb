@@ -11,7 +11,7 @@ describe 'as a user' do
                           password: params[:password],
                           password_confirmation: params[:password])
 
-    post "/api/v1/session?email=#{params[:email]}&password=#{params[:password]}"
+    post "/api/v1/sessions?email=#{params[:email]}&password=#{params[:password]}"
 
     expect(response).to be_successful
     expect(response.status).to eq(200)
