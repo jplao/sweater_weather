@@ -1,0 +1,23 @@
+require 'rails_helper'
+
+describe 'as a user' do
+  it 'creates an account with api key' do
+    params = {
+      email: "whatever@example.com",
+      password: "password",
+    }
+
+    user_1 = User.create(email: params[:email],
+                          password: params[:password],
+                          password_confirmation: params[:password])
+
+    post "/api/v1/session?email=#{params[:email]}&password=#{params[:password]}"
+
+    expect(response).to be_successful
+    expect(response.status).to eq(200)
+
+    request_response = JSON.parse(response.body, symbolize_names: true)[:data][:attributes]
+    expect(request_response).to have_key(:api_key)
+    expect(request_response[:api_key]).to eq(user_1.api_key)
+  end
+end
