@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
-
+  has_many :favorites
   before_create :create_activation_digest
   validates :email, uniqueness: true, presence: true
   validates_presence_of :password
