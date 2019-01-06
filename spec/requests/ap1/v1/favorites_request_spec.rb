@@ -6,27 +6,48 @@ describe 'as a user' do
     @location = "Denver, CO"
   end
 
-  it 'saves a city to favorites' do
-    post "/api/v1/favorites?location=#{@location}&api_key=#{@user.api_key}"
+  context 'creates favorites' do
+    it 'saves a city to favorites' do
+      post "/api/v1/favorites?location=#{@location}&api_key=#{@user.api_key}"
 
-    expect(response).to be_successful
-    expect(response.status).to eq (201)
-    favorites = JSON.parse(response.body, symbolize_names: true)[:data][:attributes]
-    expect(favorites).to have_key(:location)
-    expect(@user.favorites.count).to eq(1)
+      expect(response).to be_successful
+      expect(response.status).to eq (201)
+      favorites = JSON.parse(response.body, symbolize_names: true)[:data][:attributes]
+      expect(favorites).to have_key(:location)
+      expect(@user.favorites.count).to eq(1)
+    end
+
+    it 'does not save favorite with wrong api key' do
+      post "/api/v1/favorites?location=#{@location}&api_key=wrong"
+
+      expect(response.status).to eq(401)
+      expect(response.body).to eq("Please try again")
+    end
+
+    it 'does not save favorite with no api key' do
+      post "/api/v1/favorites?location=#{@location}"
+
+      expect(response.status).to eq(401)
+      expect(response.body).to eq("Please try again")
+    end
   end
 
-  it 'does not save favorite with wrong api key' do
-    post "/api/v1/favorites?location=#{@location}&api_key=wrong"
+  context 'lists favorites' do
+    it 'returns forecasts for users favortied cities' do
+      @user.favorites.create(location: @location)
+      @user.favorites.create(location: 'Golden, CO')
 
-    expect(response.status).to eq(401)
-    expect(response.body).to eq("Please try again")
-  end
+      get "/api/v1/favorites?api_key=#{@user.api_key}"
 
-  it 'does not save favorite with no api key' do
-    post "/api/v1/favorites?location=#{@location}"
+      expect(response).to be_successful
+      expect(response.status).to eq (200)
 
-    expect(response.status).to eq(401)
-    expect(response.body).to eq("Please try again")
+
+      favorites = JSON.parse(response.body, symbolize_names: true)[:data]
+      expect(favorites.count).to eq(2)
+      expect(favorites[0][:attributes]).to have_key(:location)
+      expect(favorites[0][:attributes][:location]).to eq(@location)
+      expect(favorites[1][:attributes][:location]).to eq('Golden, CO')
+    end
   end
 end
