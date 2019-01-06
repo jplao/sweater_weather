@@ -9,6 +9,13 @@ class Api::V1::FavoritesController < ApplicationController
     end
   end
 
+  def show
+    @user = find_by_api
+    render json: FavoriteSerializer.new(@user.favorites)
+  end
+
+
+  private
   def find_by_api
     User.find_by(api_key: params[:api_key])
   end
