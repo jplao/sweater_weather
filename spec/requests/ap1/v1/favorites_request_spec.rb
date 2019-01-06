@@ -43,11 +43,12 @@ describe 'as a user' do
       expect(response.status).to eq (200)
 
 
-      favorites = JSON.parse(response.body, symbolize_names: true)[:data]
+      favorites = JSON.parse(response.body, symbolize_names: true)[:data][:attributes][:fav_cities_weather]
       expect(favorites.count).to eq(2)
-      expect(favorites[0][:attributes]).to have_key(:location)
-      expect(favorites[0][:attributes][:location]).to eq(@location)
-      expect(favorites[1][:attributes][:location]).to eq('Golden, CO')
+      expect(favorites[0]).to have_key(:city)
+      expect(favorites[0]).to have_key(:current_weather)
+      expect(favorites[0][:city]).to eq(@location)
+      expect(favorites[1][:city]).to eq('Golden, CO')
     end
   end
 end
