@@ -11,7 +11,8 @@ class Api::V1::FavoritesController < ApplicationController
 
   def show
     @user = find_by_api
-    render json: FavoriteSerializer.new(@user.favorites)
+    fave_cities = UserFavorites.new(@user.favorites)
+    render json: UserFavoritesSerializer.new(fave_cities)
   end
 
 
