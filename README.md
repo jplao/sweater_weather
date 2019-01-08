@@ -168,9 +168,9 @@ POST localhost:3000/api/v1/users
 
 body_form_data:
 {
-  "email": "whatever@example.com",
-  "password": "password"
-  "password_confirmation": "password"
+  email: whatever@example.com,
+  password: password,
+  password_confirmation: "password
 }
 ````
 
@@ -197,8 +197,8 @@ POST localhost:3000/api/v1/sessions
 
 body_form_data:
 {
-  "email": "whatever@example.com",
-  "password": "password"
+  email: whatever@example.com,
+  password: password
 }
 ````
 
@@ -225,8 +225,8 @@ POST localhost:3000/api/v1/favorites
 
 body_form_data:
 {
-  "location": "Denver, CO",
-  "api_key": "7yjVxfqoCLs1pYC82-lKsA"
+  location: Denver, CO,
+  api_key: 7yjVxfqoCLs1pYC82-lKsA
 }
 ````
 
@@ -253,7 +253,7 @@ GET localhost:3000/api/v1/favorites
 
 body_form_data:
 {
-  "api_key": "7yjVxfqoCLs1pYC82-lKsA"
+  api_key: 7yjVxfqoCLs1pYC82-lKsA
 }
 ````
 
@@ -313,6 +313,33 @@ example response:
 }
 ````
 
+#### Removing Favorite Locations - /api/v1/favorites
+
+Using their API key, a user can query a location and delete it from their favorited locations.
+
+example request:
+````
+DELETE localhost:3000/api/v1/favorites
+
+body_form_data:
+{
+  api_key: 7yjVxfqoCLs1pYC82-lKsA
+  location: denver,co
+}
+````
+
+example response:
+````json
+{
+    "data": {
+        "id": "1",
+        "type": "favorite",
+        "attributes": {
+            "location": "denver,co"
+        }
+    }
+}
+````
 
 ## Running the tests
 
