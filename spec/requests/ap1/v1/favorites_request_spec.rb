@@ -83,14 +83,33 @@ describe 'as a user' do
     end
 
     it 'does not delete favorite with wrong api key' do
-      delete "/api/v1/favorites?api_key=wrong"
+      @user.favorites.create(location: @location)
+
+      delete "/api/v1/favorites?api_key=wrong&location=#{@location}"
 
       expect(response.status).to eq(401)
       expect(response.body).to eq("Please try again")
     end
 
     it 'does not delete favorite with no api key' do
-      delete "/api/v1/favorites"
+      @user.favorites.create(location: @location)
+      delete "/api/v1/favorites?location=#{@location}"
+
+      expect(response.status).to eq(401)
+      expect(response.body).to eq("Please try again")
+    end
+
+    it 'does not delete favorite with no location' do
+      @user.favorites.create(location: @location)
+      delete "/api/v1/favorites?api_key=#{@user.api_key}"
+
+      expect(response.status).to eq(401)
+      expect(response.body).to eq("Please try again")
+    end
+
+    it 'does not delete favorite with wrong location' do
+      @user.favorites.create(location: @location)
+      delete "/api/v1/favorites?api_key=#{@user.api_key}&location=wrong"
 
       expect(response.status).to eq(401)
       expect(response.body).to eq("Please try again")

@@ -20,9 +20,8 @@ class Api::V1::FavoritesController < ApplicationController
   end
 
   def delete
-    if find_by_api
-      @user = find_by_api
-      favorite_to_delete = @user.favorites.find_by(location: params[:location])
+    if find_by_api && find_by_location
+      favorite_to_delete = find_by_location
       favorite_to_delete.destroy!
       render json: FavoriteSerializer.new(favorite_to_delete), status: 200
     else
@@ -33,5 +32,10 @@ class Api::V1::FavoritesController < ApplicationController
   private
   def find_by_api
     User.find_by(api_key: params[:api_key])
+  end
+
+  def find_by_location
+    @user = find_by_api
+    @user.favorites.find_by(location: params[:location])
   end
 end
