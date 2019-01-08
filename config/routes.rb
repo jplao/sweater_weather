@@ -4,7 +4,9 @@ Rails.application.routes.draw do
       resource :forecast, only: :show
       post '/users', to: 'users#create'
       post '/sessions', to: 'sessions#create'
-      resource :favorites, only: [:show, :create]
+      get 'favorites', to: 'favorites#show'
+      post 'favorites', to: 'favorites#create'
+      delete 'favorites', to: 'favorites#delete'
     end
   end
 end
