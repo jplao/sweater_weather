@@ -7,8 +7,8 @@ This app consumes APIs from Google GeoCode and DarkSky to render weather forecas
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
 From GitHub clone down repository using the following commands in terminal:
-* git clone git@github.com:jplao/sweater_weather.git
-* cd sweater_weather
+* `git clone git@github.com:jplao/sweater_weather.git`
+* `cd sweater_weather`
 
 ### Prerequisites
 
