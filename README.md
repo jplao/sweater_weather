@@ -14,8 +14,8 @@ From GitHub clone down repository using the following commands in terminal:
 
 You will need Rails installed and verify that it is version 5.2
 
-To check your version using terminal run: rails -v in the command line.
-If you have not installed rails, in terminal run: gem install rails -v 5.2 in the command line.
+To check your version using terminal run: `rails -v` in the command line.
+If you have not installed rails, in terminal run: `gem install rails -v 5.2` in the command line.
 
 
 ### Installing
@@ -23,18 +23,19 @@ If you have not installed rails, in terminal run: gem install rails -v 5.2 in th
 This app requires a few keys.
 
 You can sign up for a Google API key here: https://cloud.google.com/maps-platform/
+
 You can sign up for a Dark Sky API key here: https://darksky.net/dev/register
 
 Open terminal and run these commands:
-* bundle
-* bundle update
-* figaro install
+* `bundle`
+* `bundle update`
+* `figaro install`
 * in your config/applicaion.yml file add your keys with these names:
 
-  * GOOGLE_API_KEY:
-  * DARK_SKY_API_KEY:
+  * `GOOGLE_API_KEY:`
+  * `DARK_SKY_API_KEY:`
 
-* rails db:{create,migrate,seed}
+* `rails db:{create,migrate,seed}`
 
 
 ### Using the App
@@ -43,7 +44,7 @@ Open terminal and run these commands:
 To view these endpoints run your server using the command: `rails s`
 
 
-1. Weather for a City - api/v1/forecast
+#### Weather for a City - api/v1/forecast
 
 A user can query this endpoint with a location to show the forecast for that city.
 
@@ -157,7 +158,7 @@ example response:
 }
 ````
 
-2. Create an account - api/v1/users
+#### Create an account - api/v1/users
 
 A user can create an account in our system by sending their data through the body of their request and will get a generated api key as a response.
 
@@ -186,7 +187,7 @@ example response:
 }
 ````
 
-3. Login - api/v1/sessions
+#### Login - api/v1/sessions
 
 A user can log into their account using the email and password they used to create their account and will get their api key as a response.
 
@@ -214,7 +215,7 @@ example response:
 }
 ````
 
-4. Favoriting Locations - /api/v1/favorites
+#### Favoriting Locations - /api/v1/favorites
 
 Using their generated API key, a user can add locations to their favorited locations.
 
@@ -242,7 +243,7 @@ example response:
 }
 ````
 
-5. Listing Favorite Locations - /api/v1/favorites
+#### Listing Favorite Locations - /api/v1/favorites
 
 Using their API key, a user can generate a list of their favorited locations that includes the current weather for those cities.
 
@@ -317,13 +318,13 @@ example response:
 
 * Note: Before running RSpec, ensure you're in the project root directory.
 
-From terminal run: bundle exec rspec
+From terminal run: `bundle exec rspec`
 
 After RSpec has completed, you should see all tests passing as GREEN.  Any tests that have failed or thrown an error will display RED.  Any tests that have been skipped will be displayed as YELLOW.
 
 You can see all the tests by viewing the spec folder.  
 
-#### Request tests
+### Request tests
 Tests found in `/requests/api/v1` test to make sure endpoints display expected data correctly.
 
 example test:
@@ -350,7 +351,7 @@ end
 
 ````
 
-#### Service tests
+### Service tests
 Tests found in `/services` test to make sure services from outside APIs are working correctly and output the correct expected data.
 ````ruby
 require 'rails_helper'
