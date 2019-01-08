@@ -387,4 +387,4 @@ end
 
 ## Author
 
-* Jennifer Lao - Github: jplao
+* Jennifer Lao - Github: [jplao](https://www.github.com/jplao)
