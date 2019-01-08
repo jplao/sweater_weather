@@ -378,9 +378,8 @@ end
 * Rails
 * RSpec
 * ShouldaMatchers
-* Capybara
 * SimpleCov
-* PostreSQL
+* PostgreSQL
 * Faraday
 * Figaro
 * Bcrypt
