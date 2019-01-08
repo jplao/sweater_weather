@@ -50,6 +50,20 @@ describe 'as a user' do
       expect(favorites[0][:city]).to eq(@location)
       expect(favorites[1][:city]).to eq('Golden, CO')
     end
+
+    it 'does not list favorites with wrong api key' do
+      get "/api/v1/favorites?api_key=wrong"
+
+      expect(response.status).to eq(401)
+      expect(response.body).to eq("Please try again")
+    end
+
+    it 'does not list favorites with no api key' do
+      get "/api/v1/favorites"
+
+      expect(response.status).to eq(401)
+      expect(response.body).to eq("Please try again")
+    end
   end
 
   context 'deletes a favorite city' do
@@ -66,6 +80,20 @@ describe 'as a user' do
       deleted = JSON.parse(response.body, symbolize_names: true)[:data][:attributes]
       expect(deleted).to have_key(:location)
       expect(deleted[:location]).to eq(@location)
+    end
+
+    it 'does not delete favorite with wrong api key' do
+      delete "/api/v1/favorites?api_key=wrong"
+
+      expect(response.status).to eq(401)
+      expect(response.body).to eq("Please try again")
+    end
+
+    it 'does not delete favorite with no api key' do
+      delete "/api/v1/favorites"
+
+      expect(response.status).to eq(401)
+      expect(response.body).to eq("Please try again")
     end
   end
 end

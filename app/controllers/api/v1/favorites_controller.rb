@@ -10,16 +10,24 @@ class Api::V1::FavoritesController < ApplicationController
   end
 
   def show
-    @user = find_by_api
-    fave_cities = UserFavorites.new(@user.favorites)
-    render json: UserFavoritesSerializer.new(fave_cities)
+    if find_by_api
+      @user = find_by_api
+      fave_cities = UserFavorites.new(@user.favorites)
+      render json: UserFavoritesSerializer.new(fave_cities)
+    else
+      render json: 'Please try again', status: 401
+    end
   end
 
   def delete
-    @user = find_by_api
-    favorite_to_delete = @user.favorites.find_by(location: params[:location])
-    favorite_to_delete.destroy!
-    render json: FavoriteSerializer.new(favorite_to_delete), status: 200
+    if find_by_api
+      @user = find_by_api
+      favorite_to_delete = @user.favorites.find_by(location: params[:location])
+      favorite_to_delete.destroy!
+      render json: FavoriteSerializer.new(favorite_to_delete), status: 200
+    else
+      render json: 'Please try again', status: 401
+    end
   end
 
   private
