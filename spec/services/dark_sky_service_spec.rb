@@ -12,13 +12,15 @@ describe 'dark sky service' do
 
   context 'it returns forecast data' do
     it '.get_forecast' do
-      response = @service.get_forecast
-      expect(response[:latitude]).to eq(@coords[:lat])
-      expect(response[:longitude]).to eq(@coords[:lng])
-      expect(response[:timezone]).to eq("America/Denver")
-      expect(response[:currently]).to be_an_instance_of(Hash)
-      expect(response[:hourly]).to be_an_instance_of(Hash)
-      expect(response[:daily]).to be_an_instance_of(Hash)
+      VCR.use_cassette("dark_sky_data_cassette") do
+        response = @service.get_forecast
+        expect(response[:latitude]).to eq(@coords[:lat])
+        expect(response[:longitude]).to eq(@coords[:lng])
+        expect(response[:timezone]).to eq("America/Denver")
+        expect(response[:currently]).to be_an_instance_of(Hash)
+        expect(response[:hourly]).to be_an_instance_of(Hash)
+        expect(response[:daily]).to be_an_instance_of(Hash)
+      end
     end
   end
 
