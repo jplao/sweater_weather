@@ -75,11 +75,8 @@ describe 'as a user' do
       delete "/api/v1/favorites?api_key=#{@user.api_key}&location=#{@location}"
 
       expect(response).to be_successful
-      expect(response.status).to eq (200)
+      expect(response.status).to eq (204)
       expect(@user.favorites.count).to eq(1)
-      deleted = JSON.parse(response.body, symbolize_names: true)[:data][:attributes]
-      expect(deleted).to have_key(:location)
-      expect(deleted[:location]).to eq(@location)
     end
 
     it 'does not delete favorite with wrong api key' do

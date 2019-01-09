@@ -7,6 +7,10 @@ class ForecastFacade
     Forecast.new(dark_sky, @location)
   end
 
+  def create_current
+    CurrentForecast.new(dark_sky)
+  end
+
   private
   def geocode
     @geo ||= GeocodeService.new(@location).get_coords

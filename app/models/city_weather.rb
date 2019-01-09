@@ -9,8 +9,8 @@ class CityWeather
 
 private
   attr_reader :data
-  
+
   def load_weather
-    @current_weather << ForecastFacade.new(data).create_forecast.today
+    @current_weather << ForecastFacade.new(data).create_current
   end
 end

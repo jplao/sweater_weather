@@ -23,7 +23,7 @@ class Api::V1::FavoritesController < ApplicationController
     if find_by_api && find_by_location
       favorite_to_delete = find_by_location
       favorite_to_delete.destroy!
-      render json: FavoriteSerializer.new(favorite_to_delete), status: 200
+      render json: '', status: 204
     else
       render json: 'Please try again', status: 401
     end
