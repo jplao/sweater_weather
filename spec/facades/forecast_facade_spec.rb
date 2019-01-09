@@ -1,4 +1,3 @@
-
 require "rails_helper"
 
 describe "Forecast Facade" do
