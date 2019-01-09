@@ -331,13 +331,6 @@ body_form_data:
 example response:
 ````json
 {
-    "data": {
-        "id": "1",
-        "type": "favorite",
-        "attributes": {
-            "location": "denver,co"
-        }
-    }
 }
 ````
 
